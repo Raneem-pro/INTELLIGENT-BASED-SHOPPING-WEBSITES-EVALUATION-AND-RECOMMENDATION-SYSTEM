@@ -64,12 +64,6 @@ This project aims to help shopping website developers improve the usability of t
     ```
 2. Open your browser and go to `http://localhost:5000` to view the application.
 
-### Running Tests
-
-1. Run the test suite:
-    ```bash
-    pytest
-    ```
 
 ## Usage
 
