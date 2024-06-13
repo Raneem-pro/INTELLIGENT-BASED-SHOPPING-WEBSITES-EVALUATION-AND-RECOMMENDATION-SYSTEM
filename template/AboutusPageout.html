@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>WebEvaluater</title>
+    </head>
+    <style>
+    html, body {
+        margin: 0;
+        padding:0;
+        background: #b9d4db;
+      }
+    nav {
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        top: 1%;
+        padding: 0 20%;
+        height: 17vh;
+    }
+    nav .logo {
+        float: left;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        margin-left: -30%;
+        margin-top: -1%;
+        align-items: center;
+    }
+    nav .links {
+        float: right;
+        padding: 0;
+        margin-top: 5%;
+        margin-right:-23%;
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    nav .links li {
+        list-style: none;
+    }
+    nav .links a {
+        display: block;
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 300;
+        text-align: center;
+    }
+    nav .links a:hover,  nav a.selected{
+    color:  rgb(55, 71, 128);
+    }
+    #nav-toggle {
+        position: absolute;
+        top: -100px;
+    }
+    nav .icon-burger {
+        display: none;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    nav .icon-burger .line {
+        width: 30px;
+        height: 5px;
+        background-color: #fff;
+        margin: 5px;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+    }
+    @media screen and (max-width: 768px) {
+        nav .logo {
+            float: left;
+            width: auto;
+            justify-content: center;
+        }
+        nav .links {
+            float: none;
+            position: fixed;
+            z-index: 9;
+            left: 0;
+            right: 0;
+            top: 100px;
+            bottom: 100%;
+            width: auto;
+            height: auto;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+            background-color: rgba(0,0,0,.8);
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: all .5s ease-in-out;
+        }
+        nav .links a {
+            font-size: 20px;
+        }
+        nav :checked ~ .links {
+            bottom: 0;
+        }
+        nav .icon-burger {
+            display: block;
+        }
+        nav :checked ~ .icon-burger .line:nth-child(1) {
+            transform: translateY(10px) rotate(225deg);
+        }
+        nav :checked ~ .icon-burger .line:nth-child(3) {
+            transform: translateY(-10px) rotate(-225deg);
+        }
+        nav :checked ~ .icon-burger .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+    }
+    /*set a style for the buttons*/
+    button {
+        background-color:  rgb(55, 71, 128);
+        color: white;
+        border: none;
+        cursor: pointer;
+        width: 120px;
+        height: 35px;
+        border-radius: 8px;
+    }
+    
+    /* set a hover effect for the button*/
+    button:hover {
+        opacity: 0.8;
+    }
+
+ /*assign full width inputs*/
+ input[type=text],
+    input[type=password] {
+        width:50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border:none;
+        box-sizing: border-box;
+        border-bottom:2px solid black;
+        flat: left;
+    }
+    
+
+    /*set the forgot password text*/
+    span.psw {
+        text-align: center;
+        padding-top: 16px;
+    }
+    
+    /*set the Modal background*/
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 50px;
+    }
+    /*style the model content box*/
+    .modal-content {
+        width:30%;
+        margin-top:13%;
+        margin-left:35%;
+        background:white;
+        text-align: center;
+        padding-bottom: 2%;
+        padding-top: 1%;
+        border-radius:10px;
+        
+    }
+    .container{
+        min-height: 60vh;
+        display: flex;
+        width: 100%;
+        margin-top: 85px;
+        text-align: center;
+    }
+    .container6{
+        background:  rgb(55, 71, 128);
+        width:25%;
+        border-radius:10px;
+        text-align:center;
+        margin-left:35%;
+    }
+      
+    .design{
+        color:#222f59;
+      margin-right:33%;
+    }
+    .design1{
+        color:#222f59;
+      margin-right:39%;
+    }
+    section {
+        margin-top:9%;
+        color: rgb(48, 56, 98);
+        background-color: rgb(245, 245, 245);
+    }
+    h1 {
+            font-size: 50px;
+            color:#F76C6C;
+        }
+
+    section h1,h3, h4 {
+        text-align: center;
+    }
+    section p {
+        text-align: center;
+        color: rgb(48, 56, 98);
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .goals {
+        background-color: rgb(254, 254, 254);
+        margin-top: -3%;
+        height: 500px;
+        text-align: center;
+        
+    }
+    .goals h1{
+        color:#24305E;
+    }
+    .goals div{
+        width: 300px;
+        margin: 20px;
+    }
+    .goals a{
+        text-align: center;
+        color: rgb(48, 56, 98);
+        font-weight: bold;
+    }
+    
+    section div {
+        display: inline-block;
+        width: 190px;
+        margin: 0px 0px 0px 0px;
+    }
+
+    section div img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+    }
+    
+    .show {
+        display: block;
+    }
+    .teamwork{
+        margin-top: -3%;
+        text-align: center;
+    }
+    .teamwork div{
+        width: 300px;
+        margin: 20px;
+    }
+    .teamwork h1{
+        color:#24305E;
+    }
+    </style>
+       <body>
+           <header>
+               <nav>
+                   <input id="nav-toggle" type="checkbox">
+                       <div class="logo">
+                           <img src="{{url_for('static', filename='logo.png')}}" height="250" />
+                           </div>
+                       <ul class="links">
+                           <li><a href="{{url_for('dd3')}}">Home</a></li>
+                           <li><a href="{{url_for('dd5')}}" class="selected">About US</a></li>
+                           <li><a  href="#myModal" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="login" >Log in</a></li>
+                       </ul>
+                   <label for="nav-toggle" class="icon-burger">
+                       <div class="line"></div>
+                       <div class="line"></div>
+                       <div class="line"></div>
+                   </label>
+               </nav>
+           </header>
+           <section>
+               </br>
+               <h1> About us </h1>
+               <p>Providing an intelligent tool for usability evaluation of shopping websites
+                   based on specified usability principles. <br>Then the overall result of usability
+                   evaluation will display in the form of grade. Also, this tool gives recomindations <br>
+                   to enhance shopping websites usability.</p>
+                   </br>
+                   </br>
+                   </br>
+                   </br>
+                   </br>
+           </section>
+           <section class="goals">
+               </br>
+               <h1> Our Goals </h1>
+               <div>
+                   <a>
+                       <img src="{{url_for('static', filename='z6J1VY1 - Imgur.png')}}"/>
+                   </a>
+                   <a>Facilitate the evaluation
+                       process of website
+                       usability for developers
+                   </a>
+               </div>
+               <div>
+                   <a> <img src="{{url_for('static', filename='8teY1h6 - Imgur.png')}}"/>
+                   </a>
+                   <a>Enhance the usability
+                       in fashion shopping
+                       website
+                   </a>
+
+               </div>
+               <div>
+                   <a><img src="{{url_for('static', filename='Fc8w8wu - Imgur.png')}}"/>
+                   </a>
+                   <a>Help beginner developers
+                       to discover usability
+                       issues earlier
+                   </a>
+               </div>
+           </section>
+           <section class="teamwork">
+               </br>
+               <h1> Team Work </h1>
+               <div >
+                   <a>  <img src="{{url_for('static', filename='TJQQAHI - Imgur.png')}}" height="170"/>
+                   </a>
+                   <h2>Asmaa Hakami</h2>
+                   <h4>Computer Science</h4>
+                   <a href=" https://www.linkedin.com/in/asmaa-hakami-942116141/">
+                       <img src="{{url_for('static', filename='n3E8mk4 - Imgur.png')}}" />
+                   </a>
+               </div>
+               <div>
+                   <a>  <img src="{{url_for('static', filename='8OI3dip - Imgur.png')}}" height="170"/>
+                   </a>
+                   <h2>Raneem ALqarni</h2>
+                   <h4>Computer Science</h4>
+                   <a href="https://www.linkedin.com/in/raneem-alqarni-27a735209/">
+                       <img src="{{url_for('static', filename='n3E8mk4 - Imgur.png')}}" />
+                   </a>
+               </div>
+               <div>
+                   <a>  <img src="{{url_for('static', filename='PExkTLE - Imgur.png')}}" height="170"/>
+                   </a>
+                   <h2>Asmaa Ahmed</h2>
+                   <h4>Computer Science</h4>
+                   <a href=" https://imgur.com/n3E8mk4">
+                       <img src="{{url_for('static', filename='n3E8mk4 - Imgur.png')}}" />
+                   </a>
+
+               </div>
+
+           </section>
+
+    <!--Step 1 : Adding HTML-->
+    
+    <form method="POST" , action="/loginA">
+        <div id="id01" class="modal">
+    <div class="modal-content animate">
+                <h2>Log in</h2>
+
+                <p class="design1">Email:</p>
+                <input type="text" name="Email" value="" required>
+                <p class="design">password:</p>
+                <input type="password" name="password" value="" required>
+                    </br>
+                    </br>
+                     <button type="submit" name="bton">Log in</button>
+                        </br>
+                        </br>
+                        <span class="psw">Dont have an account?<a href="{{url_for('dd4')}}"> Sign up</a></span>
+    </div>
+        </div>
+    </form>
+    <script>
+        var modal = document.getElementById('id01');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Result</title>
+
+
+</head>
+<style>
+    html,
+    body {
+
+        background: #F6F6F6;
+        height: 100%;
+    }
+
+    .logo {
+        float: left;
+        height: 100%;
+        display: flex;
+
+    }
+
+    h2 {
+        padding-top: 25%;
+        font-size: 1cm;
+        color: #222f59;
+    }
+
+    .contaner {
+        width: 100%;
+        text-align: center;
+        height: 100%;
+    }
+
+    .part1 {
+        width: 30%;
+        height: 30%;
+        margin-top: 5%;
+        margin-left: 12%;
+        margin-right: 5%;
+        background: white;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .part2 {
+        width: 30%;
+        height: 30%;
+        margin-top: 5%;
+        margin-left: 12%;
+        margin-right: 5%;
+        background: white;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .part3 {
+        width: 30%;
+        height: 30%;
+        margin-top: 5%;
+        margin-left: 12%;
+        margin-right: 5%;
+        background: white;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .part4 {
+        width: 30%;
+        height: 30%;
+        margin-top: 5%;
+        margin-left: 12%;
+        margin-right: 5%;
+        background: white;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .container2 {
+        display: flex;
+        display: -webkit-box;
+    }
+
+    .container3 {
+        display: flex;
+        display: -webkit-box;
+    }
+
+    h2 {
+        color: #222f59;
+    }
+
+    .imagest {
+        margin-top: 7%;
+        margin-left: -3%;
+    }
+
+    .imagest1 {
+        margin-top: 7%;
+        margin-left: 1%;
+    }
+
+    .imagest2 {
+        margin-top: 7%;
+        margin-left: 5%;
+    }
+    .content-wrapper{
+        width:30%;
+        float: center;
+       margin-left: 14%;
+       margin-bottom: 15%;
+
+    }
+    .content-wrapper img{
+        width:100%;
+    }
+    .text-wrapper{
+        width:100%;
+        position: relative;
+        margin-top: -90%;
+    }
+    .text-wrapper h2{
+        text-align: center;
+        font-size: 25px;
+    }
+</style>
+
+<body>
+
+    <div class="contaner">
+        <div class="logo">
+            <a href="https://i.imgur.com/P7FaNLy.png"><img src="https://i.imgur.com/P7FaNLy.png"
+                    title="source: imgur.com" height="200" /></a>
+        </div>
+        <h2>Result</h2>
+        <div class="container2">
+            <div class="content-wrapper">
+                <p>Grade based on features </p>
+                {% if data_svm =='Excellent'%}
+                <img src="https://i.imgur.com/frPWtDs.png" height="230"/>
+              {% endif %}
+              {% if data_svm =='Very good'%}
+              <img src="https://i.imgur.com/lt2QVYN.png" height="230" />
+            {% endif %}
+            {% if data_svm =='Good'%}
+            <img src="https://i.imgur.com/6yq1FhC.png" height="230" />
+          {% endif %}
+          {% if data_svm =='Very bad'%}
+          <img src="https://i.imgur.com/lzqn42y.png" height="230" />
+        {% endif %}
+        {% if data_svm =='Bad'%}
+        <img src="https://i.imgur.com/S1gIOB4.png" height="230" />
+      {% endif %}
+
+            <div class="text-wrapper">
+                </br>
+                <h2>{{data_svm}}</h2>
+            </div>
+            </div>
+            <div class="content-wrapper">
+                <p>Grade based on design</p>
+                {% if data_cnn =='Excellent'%}
+                <img src="https://i.imgur.com/frPWtDs.png" height="230"/>
+              {% endif %}
+              {% if data_cnn =='Very good'%}
+              <img src="https://i.imgur.com/lt2QVYN.png" height="230" />
+            {% endif %}
+            {% if data_cnn =='Good'%}
+            <img src="https://i.imgur.com/6yq1FhC.png" height="230" />
+          {% endif %}
+          {% if data_cnn =='Very bad'%}
+          <img src="https://i.imgur.com/lzqn42y.png" height="230" />
+        {% endif %}
+        {% if data_cnn =='Bad'%}
+        <img src="https://i.imgur.com/S1gIOB4.png" height="230" />
+      {% endif %}
+                <div class="text-wrapper">
+                    </br>
+                    <h2> {{data_cnn}}</h2>
+                    </div>
+                    </div>
+    </div>
+                </br>
+    <div class="container2">
+        <div class="part1">
+            <a><img src="https://i.imgur.com/hiGS1Xl.png"
+                   height="90" class="imagest1" /></a>
+            <p>Load time</p>
+            {{reco1}}
+        </div>
+
+        <div class="part2">
+            <a><img src="https://i.imgur.com/eGIYN5v.png"
+                    height="90" class="imagest" /></a>
+            <p>Contact information</p>
+            {{reco2}}
+        </div>
+    </div>
+
+    <div class="container3">
+        <div class="part3">
+            <a><img src="https://i.imgur.com/BAoDmO3.png"
+                    height="90" class="imagest" /></a>
+            <p>Photo resolution</p>
+            {{reco3}}
+        </div>
+
+        <div class="part4">
+            <a><img src="https://i.imgur.com/fAb8roe.png"  height="90" class="imagest"/></a>
+            <p>Mobile-UI</p>
+            {{reco4}}
+        </div>
+    </div>
+
+</body>
+
+</html>

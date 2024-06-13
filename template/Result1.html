@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Result-WebEvaluater</title>
+    </head>
+    <style>
+        html, body {
+            margin: 0;
+            padding:0;
+            background: #b9d4db;
+          }
+        nav {
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            right: 0;
+            top: 1%;
+            padding: 0 20%;
+            height: 17vh;
+        }
+        nav .logo {
+            float: left;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            margin-left: -30%;
+            margin-top: -1%;
+            align-items: center;
+        }
+        nav .links {
+            float: right;
+            padding: 0;
+            margin-top: 5%;
+            margin-right:-23%;
+            width: 60%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        nav .links li {
+            list-style: none;
+        }
+        nav .links a {
+            display: block;
+            font-size: 25px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            text-align: center;
+        }
+        nav .links a:hover,  nav a.selected{
+        color:  rgb(55, 71, 128);
+        }
+        #nav-toggle {
+            position: absolute;
+            top: -100px;
+        }
+        nav .icon-burger {
+            display: none;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        nav .icon-burger .line {
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            margin: 5px;
+            border-radius: 3px;
+            transition: all .3s ease-in-out;
+        }
+        @media screen and (max-width: 768px) {
+            nav .logo {
+                float: left;
+                width: auto;
+                justify-content: center;
+            }
+            nav .links {
+                float: none;
+                position: fixed;
+                z-index: 9;
+                left: 0;
+                right: 0;
+                top: 100px;
+                bottom: 100%;
+                width: auto;
+                height: auto;
+                flex-direction: column;
+                justify-content: space-evenly;
+                text-align: center;
+                background-color: rgba(0,0,0,.8);
+                overflow: hidden;
+                box-sizing: border-box;
+                transition: all .5s ease-in-out;
+            }
+            nav .links a {
+                font-size: 20px;
+            }
+            nav :checked ~ .links {
+                bottom: 0;
+            }
+            nav .icon-burger {
+                display: block;
+            }
+            nav :checked ~ .icon-burger .line:nth-child(1) {
+                transform: translateY(10px) rotate(225deg);
+            }
+            nav :checked ~ .icon-burger .line:nth-child(3) {
+                transform: translateY(-10px) rotate(-225deg);
+            }
+            nav :checked ~ .icon-burger .line:nth-child(2) {
+                opacity: 0;
+            }
+
+        }
+    /*assign full width inputs*/
+   /* input[name=Email],
+       input[type=password] {
+           width:50%;
+           padding: 12px 20px;
+           margin: 8px 0;
+           display: inline-block;
+           border:none;
+           box-sizing: border-box;
+       }*/
+
+       input[name=email]{
+           width:40%;
+           border:2px solid #aaa;
+           border-radius:8px;
+           margin:8px 0;
+           outline:none;
+           padding: 12px;
+           box-sizing:border-box;
+           margin-right:20%;
+         }
+       /*set a style for the buttons*/
+       button {
+           background-color:  rgb(55, 71, 128);
+           color: white;
+           border: none;
+           cursor: pointer;
+           width: 120px;
+           height: 35px;
+           border-radius: 8px;
+       }
+
+       /* set a hover effect for the button*/
+       button:hover {
+           opacity: 0.8;
+       }
+       /*set the forgot password text*/
+       span.psw {
+           text-align: center;
+           padding-top: 16px;
+       }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 50px;
+    }
+
+    .modal-content {
+        width:30%;
+        margin-top:13%;
+        margin-left:35%;
+        background:white;
+        text-align: center;
+        padding-bottom: 2%;
+        padding-top: 1%;
+        border-radius:10px;
+
+    }
+    h3 {
+       font-size: 35px;
+       color:#222f59;
+       margin-top: 13%;
+       margin-right:30%;
+    }
+    h2 {
+       font-size: 35px;
+       color:#222f59;
+    }
+    .sum{
+        float: left;
+        margin-left:15%;
+    }
+    .design{
+        color:#222f59;
+      margin-right:33%;
+    }
+    .design1{
+        color:#222f59;
+      margin-right:39%;
+    }
+
+    .contaner{
+        width:100%;
+        margin-top: 5%;
+        text-align: center;
+        float:center;
+        height: 110vh;
+        padding-bottom: 7px;
+    }
+    .part1{
+        width: 20%;
+        height:30vh;
+        margin-top: 5%;
+        margin-left: 18%;
+        margin-right:2%;
+        background: white;
+        text-align: center;
+        border-radius:10px;
+    }
+
+    .part2{
+        width: 20%;
+        height:30vh;
+        margin-top: 5%;
+        margin-right:2%;
+        background: white;
+        text-align: center;
+        border-radius:10px;
+    }
+    .part3{
+        width: 20%;
+        height:30vh;
+        margin-top: 5%;
+        background: white;
+        text-align: center;
+        border-radius:10px;
+    }
+
+    .part4{
+        width: 20%;
+        height:30vh;
+        margin-top: 5%;
+        margin-left: 18%;
+        margin-right:2%;
+        background: white;
+        text-align: center;
+        border-radius:10px;
+    }
+
+    .part6{
+        width: 20vw;
+        height:30vh;
+        margin-top: 5%;
+        margin-right:2%;
+        background: white;
+        text-align: center;
+    }
+    .container2{
+        display: flex;
+    }
+
+    .container3{
+        display: flex;
+    }
+
+ h{
+    color:#222f59;
+    }
+    .fram{
+        width: 30%;
+        margin-left: 43%;
+        margin-top: 20%;
+        padding-bottom: 100px;
+    }
+    .imagest{
+        margin-top: 7%;
+        margin-left: -3%;
+    }
+    .imagest1{
+        margin-top: 7%;
+        margin-left: 1%;
+    }
+    .imagest2{
+        margin-top: 7%;
+        margin-left: 5%;
+    }
+    .content-wrapper{
+        width:13%;
+        float: center;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .content-wrapper img{
+        width:100%;
+    }
+    .text-wrapper{
+        width:100%;
+        position: relative;
+        margin-top: -75%;
+    }
+    .text-wrapper h2{
+        text-align: center;
+        font-size: 25px;
+    }
+    section {
+        margin-top:9%;
+        color: rgb(48, 56, 98);
+        background-color: rgb(245, 245, 245);
+    }
+    .containerGrade{
+        display: flex;
+        justify-content: center;
+    }
+
+    #feedbackDiv {
+
+width: 300px;
+height: 100px;
+overflow: hidden;
+background: #b9d4db;
+box-shadow: 0 0 4px black;
+border-radius: 10px;
+top: 50%;
+left: 50%;
+transform: translate(-25%, -100%);
+padding: 10px;
+text-align: center;
+display: none;
+
+}
+
+#feedbackDiv h1 {
+
+color: rgb(48, 56, 98);
+font-size: 18px;
+}
+
+.Okbtn {
+
+font-size: 18px;
+color: rgb(48, 56, 98);
+padding: 5px 30px;
+cursor: pointer;
+background: white;
+display: inline-block;
+border-radius: 10px;
+}
+
+.feedbtn {
+
+transform: translate(-90%, -0%);
+background: rgb(48, 56, 98);
+font-size: 20px;
+color: white;
+padding: 5px 30px;
+cursor: pointer;
+border-radius: 8px;
+border: none;
+}
+
+    </style>
+    <header>
+        <nav>
+            <input id="nav-toggle" type="checkbox">
+
+                <div class="logo">
+                    <img src="{{url_for('static', filename='logo.png')}}" height="250" />
+                    </div>
+                <ul class="links">
+                    <li><a href="{{url_for('dd')}}">Home</a></li>
+                    <li><a href="{{url_for('dd1')}}">About US</a></li>
+                    <li><a href="{{url_for('dd2')}}">MyResult</a></li>
+                    <li><a href="{{url_for('dd3')}}">Log out</a></li>
+                    <li><a href="#projects">{{info}}</a></li>
+                </ul>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+        </nav>
+    </header>
+    <body>
+        <section>
+    <div class="contaner">
+        </br>
+        </br>
+        </br>
+        <h2>Result</h2>
+        <div class="containerGrade">
+        <div class="content-wrapper">
+            <p>Grade based on features</p>
+            <img src="{{url_for('static', filename='circle.png')}}" height="230" />
+        <div class="text-wrapper">
+            </br>
+            <h2>{{data_svm}}</h2>
+        </div>
+        </div>
+        <div class="content-wrapper">
+            <p>Grade based on design</p>
+            <img src="{{url_for('static', filename='circle.png')}}" height="230" />
+            <div class="text-wrapper">
+                </br>
+                <h2> {{data_cnn}}</h2>
+            </div>
+            </div>
+
+        </div>
+
+        </br>
+        </br>
+        <div class="container2">
+            <div class="part1">
+                <img src="{{url_for('static', filename='Loading.png')}}" height="90"  class="imagest1"/>
+             <p>Load time</p>
+             {{reco1}}
+            </div>
+            <div class="part2">
+                <img src="{{url_for('static', filename='communicate.png')}}" height="90"  class="imagest"/>
+                <p>Contact information</p>
+                {{reco2}}
+            </div>
+            <div class="part3">
+                <img src="{{url_for('static', filename='hd.png')}}" height="90"  class="imagest"/>
+                <p>Photo resolution</p>
+                {{reco3}}
+            </div>
+          </div>
+        <div class="container3">
+            <div class="part4">
+                <img src="{{url_for('static', filename='device.png')}}" height="90"  class="imagest2"/>
+                <p>Mobile-UI</p>
+                {{reco4}}
+            </div>
+        </div>
+        </div>
+        
+        <div class="fram">
+                <h>Send copy to email</h>
+                    <form method="POST", action="{{url_for('pdf',data_cnn = data_cnn, data_svm = data_svm, reco1=reco1, reco2=reco2, reco3=reco3, reco4=reco4)}}">
+                    <input type="text" name="email" placeholder="Email">
+                </br>
+
+
+                <a type="submit" class="feedbtn" onclick="feedBackpopupWindow()">Send</a>
+                <div id="feedbackDiv">
+                        <h1>Results have been sent to your email</h1>
+                        <a class="Okbtn" onclick="feedBackpopupWindow()">Ok</a>
+                    </div>
+
+
+                    </form>
+                        </div>
+            </div>
+        </section>
+
+        <script>
+
+            var mod = null
+            function feedBackpopupWindow() {
+                if (mod === null) {
+                    document.getElementById("feedbackDiv").style.display = "block";
+                    mod = true
+                } else {
+                    document.getElementById("feedbackDiv").style.display = "none";
+                    mod = null
+                }
+            }
+
+        </script>
+
+    </body>
+</html>

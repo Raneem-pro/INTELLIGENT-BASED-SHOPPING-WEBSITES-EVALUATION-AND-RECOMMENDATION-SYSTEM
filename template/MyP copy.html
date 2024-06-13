@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MyResult-WebEvaluater</title>
+    </head>
+    <style>
+    html, body {
+        margin: 0;
+        padding:0;
+        background: #b9d4db;
+      }
+    nav {
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        top: 5%;
+        padding: 0 20%;
+        height: 100px;
+    }
+    nav .logo {
+        float: left;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        margin-left: -30%;
+        align-items: center;
+    }
+    nav .links {
+        float: right;
+        padding: 0;
+        margin-top: 4%;
+        margin-right:-23%;
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    nav .links li {
+        list-style: none;
+    }
+    nav .links a {
+        display: block;
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 300;
+        text-align: center;
+    }
+    nav .links a:hover,  nav a.selected{
+    color:  rgb(55, 71, 128);
+    }
+    #nav-toggle {
+        position: absolute;
+        top: -100px;
+    }
+    nav .icon-burger {
+        display: none;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    nav .icon-burger .line {
+        width: 30px;
+        height: 5px;
+        background-color: #fff;
+        margin: 5px;
+        border-radius: 3px;
+        transition: all .3s ease-in-out;
+    }
+    @media screen and (max-width: 768px) {
+        nav .logo {
+            float: left;
+            width: auto;
+            justify-content: center;
+        }
+        nav .links {
+            float: none;
+            position: fixed;
+            z-index: 9;
+            left: 0;
+            right: 0;
+            top: 100px;
+            bottom: 100%;
+            width: auto;
+            height: auto;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+            background-color: rgba(0,0,0,.8);
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: all .5s ease-in-out;
+        }
+        nav .links a {
+            font-size: 20px;
+        }
+        nav :checked ~ .links {
+            bottom: 0;
+        }
+        nav .icon-burger {
+            display: block;
+        }
+        nav :checked ~ .icon-burger .line:nth-child(1) {
+            transform: translateY(10px) rotate(225deg);
+        }
+        nav :checked ~ .icon-burger .line:nth-child(3) {
+            transform: translateY(-10px) rotate(-225deg);
+        }
+        nav :checked ~ .icon-burger .line:nth-child(2) {
+            opacity: 0;
+        }
+        
+    }
+
+
+    .container{
+        min-height: 60vh;
+        display: flex;
+        width: 100%;
+        margin-top: 85px;
+        text-align: center;
+    }
+    .left1{
+        width: 50%;
+        margin-top: 260px;
+        text-align: center;
+    }
+
+    .right1{
+        width: 50%;
+        margin-top: 255px;
+        text-align: center;
+    }
+    h3 {
+       font-size: 35px;
+       color:#222f59;
+       margin-top: 13%;
+       margin-right:30%;
+    }
+    input[name=URL]{
+        width:50%;
+        border:2px solid #aaa;
+        border-radius:8px;
+        margin:8px 0;
+        outline:none;
+        padding:12px;
+        box-sizing:border-box;
+        margin-right:20%;
+      }
+    .sum{
+        float: left;
+        margin-left:15%;
+    }
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-left:15%;
+    }
+
+    td, th {
+      border: 1px solid #b9d4db;
+      text-align: left;
+      padding: 8px;
+    }
+    button {
+        background:rgb(255,255,255,255);
+        color: gray;
+        border: none;
+        cursor: pointer;
+        width: 70%;
+        height: 35px;
+    }
+
+    /* set a hover effect for the button*/
+    button:hover {
+        opacity: 0.8;
+    }
+
+    </style>
+       <body>
+           <header>
+               <nav>
+                   <input id="nav-toggle" type="checkbox">
+                       
+                       <div class="logo">
+                           <img src="{{url_for('static', filename='logo.png')}}" height="250" />
+                           </div>
+                   <ul class="links">
+                       <li><a >Home</a></li>
+                       <li><a>About US</a></li>
+                       <li><a href="{{url_for('dd2')}}" class="selected" >MyResult</a></li>
+                       <li><a>Log out</a></li>
+                       <li><a href="#projects">{{info}}</a></li>
+                   </ul>
+                   <label for="nav-toggle" class="icon-burger">
+                       <div class="line"></div>
+                       <div class="line"></div>
+                       <div class="line"></div>
+                   </label>
+               </nav>
+           </header>
+           
+           <min>
+           <div class="container">
+               <div class="left1">
+                  <form method="POST" , action="/Result">
+                   <h3>Previous Evaluations</h3>
+                   <table>
+                     <tr>
+                       <th></th>
+                     </tr>
+                     {% for n in my_list %}
+                     <tr>
+                         {% if n =='https://www.noon.com/'%}
+                       <td><button type="submit" name="bton" value="{{n}}"><a class="text-white" name="url">{{n}}</a></td>
+                       {% endif %}
+                     </tr>
+                     {% endfor %}
+                   </table>
+                  </form>
+               </div>
+               <div class="right1">
+                   <img src="{{url_for('static', filename='lab.png')}}" height="320" />
+               </div>
+        </min>
+</body>
+</html>
