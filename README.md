@@ -86,10 +86,3 @@ This project aims to help shopping website developers improve the usability of t
 5. Push to the branch (`git push origin feature/your-feature`).
 6. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or suggestions, please contact [your-email@example.com].
